@@ -1,0 +1,32 @@
+<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:WinUITitleBarAPISample">
+
+    <Style x:Key="TitleBarControlStyle" TargetType="local:TitleBarControl">
+        <Setter Property="MinHeight" Value="22" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="local:TitleBarControl">
+                    <Grid x:Name="Grid" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" MinHeight="{TemplateBinding MinHeight}">
+                        <Border x:Name="AppTitleBar">
+                            <ContentPresenter 
+                                x:Name="InnerContentPresenter"
+								Content="{TemplateBinding InnerContent}"
+								Visibility="{TemplateBinding InnerContentVisibility}" />
+                        </Border>
+
+                        <ContentPresenter 
+                            x:Name="ContentPresenter"
+							Content="{TemplateBinding Content}"
+							Visibility="{TemplateBinding ContentVisibility}"
+                            />
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style BasedOn="{StaticResource TitleBarControlStyle}" TargetType="local:TitleBarControl" />
+
+</ResourceDictionary>
