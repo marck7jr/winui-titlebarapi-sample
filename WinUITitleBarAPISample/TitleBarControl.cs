@@ -2,6 +2,7 @@
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Markup;
 using Microsoft.UI.Xaml.Media;
+using Windows.ApplicationModel;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -18,6 +19,7 @@ namespace WinUITitleBarAPISample
             Loaded += (sender, args) =>
             {
                 Window.SetTitleBar(AppTitleBar);
+                Window.Title = Title;
 
                 Window.SizeChanged += Window_SizeChanged;
                 Window.Activated += Window_Activated;
@@ -60,7 +62,7 @@ namespace WinUITitleBarAPISample
         public Visibility InnerContentVisibility { get => (Visibility)GetValue(InnerContentVisibilityProperty); set => SetValue(InnerContentVisibilityProperty, value); }
         public static readonly DependencyProperty InnerContentVisibilityProperty = DependencyProperty.Register(nameof(InnerContentVisibility), typeof(Visibility), typeof(TitleBarControl), new PropertyMetadata(Visibility.Collapsed));
         public string Title { get => GetValue(TitleProperty) as string; set => SetValue(TitleProperty, value); }
-        public static readonly DependencyProperty TitleProperty = DependencyProperty.Register("Title", typeof(string), typeof(TitleBarControl), new PropertyMetadata(null));
+        public static readonly DependencyProperty TitleProperty = DependencyProperty.Register(nameof(Title), typeof(string), typeof(TitleBarControl), new PropertyMetadata(Package.Current.DisplayName));
         public Window Window { get => GetValue(WindowProperty) as Window; set => SetValue(WindowProperty, value); }
         public static readonly DependencyProperty WindowProperty = DependencyProperty.Register(nameof(Window), typeof(Window), typeof(TitleBarControl), new(null));
 

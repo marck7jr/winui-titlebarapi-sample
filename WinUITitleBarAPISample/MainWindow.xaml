@@ -1,4 +1,5 @@
 ﻿<Window
+    xmlns:applicationModel="using:Windows.ApplicationModel"
     x:Class="WinUITitleBarAPISample.MainWindow"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -13,7 +14,14 @@
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
-        <local:TitleBarControl x:Name="TitleBarControl" HorizontalAlignment="Stretch" Canvas.ZIndex="1">
+        <local:TitleBarControl 
+            x:Name="TitleBarControl" 
+            HorizontalAlignment="Stretch" 
+            Canvas.ZIndex="1"
+            >
+            <local:TitleBarControl.InnerContent>
+                <TextBlock HorizontalAlignment="Center" Text="{x:Bind TitleBarControl.Title}" VerticalAlignment="Center" />
+            </local:TitleBarControl.InnerContent>
             <Button x:Name="TestButton" Click="myButton_Click" PointerEntered="TestButton_PointerEntered">Test Me</Button>
         </local:TitleBarControl>
 
